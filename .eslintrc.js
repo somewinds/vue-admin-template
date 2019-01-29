@@ -9,7 +9,8 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended'],
+  extends: ['plugin:vue/recommended', 'eslint:recommended'], // 最严格模式，会在命令窗口打印错误提示
+  // extends: ['plugin:vue/essential', 'eslint:recommended'],
 
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
@@ -105,7 +106,9 @@ module.exports = {
     'no-multi-spaces': 2,
     'no-multi-str': 2,
     'no-multiple-empty-lines': [2, {
-      'max': 1
+      'max': 3,
+      "maxEOF": 3,
+      "maxBOF": 3,
     }],
     'no-native-reassign': 2,
     'no-negated-in-lhs': 2,
@@ -129,7 +132,7 @@ module.exports = {
     'no-sparse-arrays': 2,
     'no-this-before-super': 2,
     'no-throw-literal': 2,
-    'no-trailing-spaces': 2,
+    'no-trailing-spaces': 1,
     'no-undef': 2,
     'no-undef-init': 2,
     'no-unexpected-multiline': 2,
@@ -158,7 +161,7 @@ module.exports = {
         ':': 'before'
       }
     }],
-    'padded-blocks': [2, 'never'],
+    'padded-blocks': [0, 'never'],
     'quotes': [2, 'single', {
       'avoidEscape': true,
       'allowTemplateLiterals': true

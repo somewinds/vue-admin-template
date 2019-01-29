@@ -9,6 +9,9 @@ Vue.use(Router)
 /* Layout */
 import Layout from '../views/layout/Layout'
 
+/* Router Modules */
+import tableRouter from './modules/table'
+
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -140,9 +143,10 @@ export const constantRouterMap = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
+  }
 
-  { path: '*', redirect: '/404', hidden: true }
+  // 这句话会使不存在的页面重定向到404
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
@@ -150,3 +154,8 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  tableRouter
+]
+
