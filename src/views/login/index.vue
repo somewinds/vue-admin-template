@@ -37,17 +37,19 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
+// import { isvalidUsername } from '@/utils/validate'
+import { postLogin } from '@/api/index'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
+      callback()
+      /* if (!isvalidUsername(value)) {
         callback(new Error('请输入正确的用户名'))
       } else {
         callback()
-      }
+      } */
     }
     const validatePass = (rule, value, callback) => {
       if (value.length < 5) {
@@ -89,13 +91,46 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
+
+          const params = {
+            account: this.loginForm.username,
+            password: this.loginForm.password
+          }
+          postLogin(params, response => {
+            const user = response
+            console.log(user)
+            /* window.localStorage.setItem('user', JSON.stringify(user))
+            this.$store.commit('SET_USER', user)
+            window.localStorage.setItem('token', response.apikey)
+            this.$store.commit('SET_TOKEN', response.apikey)
+            this.$store.commit('LOGIN') */
+            this.$message({
+              message: '登录成功',
+              type: 'success'
+            })
+
+            /*  api.getPermission({}, response => {
+               this.$store.commit('UPDATE_ABILITIES', response)
+               // console.log(response)
+               window.localStorage.setItem('permissions', JSON.stringify(response))
+
+               let redirect_uri = this.$route.query.redirect
+               if (redirect_uri == undefined || redirect_uri == null) {
+                 redirect_uri = '/'
+               }
+               this.$router.push({
+                 path: redirect_uri
+               })
+             }) */
+
+          })
+          /* this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
-          })
+          }) */
         } else {
           console.log('error submit!!')
           return false
