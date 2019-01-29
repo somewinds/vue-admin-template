@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const { VueLoaderPlugin } = require('vue-loader')
 const vueLoaderConfig = require('./vue-loader.conf')
+var webpack = require('webpack')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -36,9 +37,14 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      // 'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
   },
+  // externals: {
+  //   'AMap': 'window.AMap',
+  //   'Loca': 'window.Loca'
+  // },
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
@@ -53,7 +59,8 @@ module.exports = {
         include: [
           resolve('src'),
           resolve('test'),
-          resolve('node_modules/webpack-dev-server/client')
+          resolve('node_modules/webpack-dev-server/client'),
+          resolve('node_modules/element-ui/src/utils/clickoutside.js')
         ]
       },
       {
@@ -88,10 +95,51 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      }/* ,
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      } */
+    ],
+    /* loaders: [
+  
+      // ...
+  
+      // Css loader.
+      {
+        test: /\.css$/,
+        loader: 'vue-style-loader!css-loader'
+      },
+  
+      // Font awesome loader.
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: path.posix.join('path/to/yours/assets/directory', 'fonts/[name].[hash:7].[ext]')
+        }
       }
-    ]
+    ] */
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      // cl() 快捷替换 console.log(...arr) 打印日志
+      'cl': function(...arr) {
+        console.log(...arr)
+      },
+      // cd() 快捷替换 console.dir(...arr) 打印日志
+      'cd': function(...arr) {
+          console.dir(...arr)
+      },
+    }),
+    // Jquery loader plugin. vue-froala需要用到jquery，因为使用了预编译，所以可以注释掉
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
