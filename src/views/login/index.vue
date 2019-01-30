@@ -38,7 +38,7 @@
 
 <script>
 // import { isvalidUsername } from '@/utils/validate'
-import { postLogin } from '@/api/index'
+import { postLogin, getPermission } from '@/api/index'
 
 export default {
   name: 'Login',
@@ -61,7 +61,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: 'admin'
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -92,37 +92,36 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
 
+          this.loading = true
           const params = {
             account: this.loginForm.username,
             password: this.loginForm.password
           }
-          postLogin(params, response => {
+          postLogin(params, async response => {
             const user = response
-            console.log(user)
-            /* window.localStorage.setItem('user', JSON.stringify(user))
-            this.$store.commit('SET_USER', user)
-            window.localStorage.setItem('token', response.apikey)
-            this.$store.commit('SET_TOKEN', response.apikey)
-            this.$store.commit('LOGIN') */
+            await this.$store.dispatch('Login', user)
             this.$message({
               message: '登录成功',
               type: 'success'
             })
+            this.loading = false
+            getPermission({}, response => {
+              console.log(response)
+              this.$store.commit('UPDATE_ABILITIES', response)
+              // console.log(response)
 
-            /*  api.getPermission({}, response => {
-               this.$store.commit('UPDATE_ABILITIES', response)
-               // console.log(response)
-               window.localStorage.setItem('permissions', JSON.stringify(response))
+              if (this.redirect === undefined || this.redirect == null) {
+                this.redirect = '/'
+              }
+              this.$router.push({
+                path: this.redirect
+              })
+            })
 
-               let redirect_uri = this.$route.query.redirect
-               if (redirect_uri == undefined || redirect_uri == null) {
-                 redirect_uri = '/'
-               }
-               this.$router.push({
-                 path: redirect_uri
-               })
-             }) */
-
+          }, error => {
+            this.loading = false
+            console.log(error)
+            return false
           })
           /* this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {

@@ -19,9 +19,12 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+store.dispatch('ResetFromStorage')
+
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
 })
+

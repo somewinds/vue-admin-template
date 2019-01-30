@@ -37,12 +37,29 @@ function filterAsyncRouter(routes, roles) {
 const permission = {
   state: {
     routers: constantRouterMap,
-    addRouters: []
+    addRouters: [],
+
+    permissions: [], // 用户可以进行的操作，文字形式
+    authed_urls: [] // 可以访问的页面
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
+    },
+    // 更新用户权限
+    UPDATE_ABILITIES(state, permissions) {
+      window.localStorage.setItem('permissions', JSON.stringify(permissions))
+      if (permissions.label) {
+        state.permissions = permissions.label
+      } else {
+        state.permissions = []
+      }
+      if (permissions.menu_uri) {
+        state.authed_urls = permissions.menu_uri
+      } else {
+        state.authed_urls = []
+      }
     }
   },
   actions: {

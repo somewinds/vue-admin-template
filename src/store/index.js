@@ -13,7 +13,26 @@ const store = new Vuex.Store({
     permission,
     user
   },
-  getters
+  getters,
+  actions: {
+    ResetFromStorage({ commit }) {
+      if (window.localStorage) {
+        if (window.localStorage.hasOwnProperty('user')) {
+          const user = window.localStorage.getItem('user')
+          if (typeof user === 'string') {
+            commit('SET_USER', JSON.parse(user))
+          }
+          commit('SET_TOKEN', window.localStorage.getItem('token'))
+        }
+        if (window.localStorage.hasOwnProperty('permissions')) {
+          const permissions = window.localStorage.getItem('permissions')
+          if (typeof permissions === 'string') {
+            commit('UPDATE_ABILITIES', JSON.parse(permissions))
+          }
+        }
+      }
+    }
+  }
 })
 
 export default store

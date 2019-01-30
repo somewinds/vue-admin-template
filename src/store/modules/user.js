@@ -1,15 +1,38 @@
-import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { logout, getInfo } from '@/api/login'
+import { removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    roles: [],
+
+    user: null, // 当前用户
+    token: null, // 用户调用API的token
+    permissions: [], // 用户可以进行的操作，文字形式
+    authed_urls: [] // 可以访问的页面
   },
 
   mutations: {
+    SET_USER: (state, user) => {
+      state.user = user
+    },
+    LOGIN: (state, user) => {
+
+      /* // 重置自定义筛选、table列
+        store.commit('X_TABLE_COLUMN/RESET_ALL_TABLE_COLUMNS');
+        store.commit('X_SEARCH_PARAMS_SELECTION/RESET_ALL_SHOW_SEARCH_PARAMS'); */
+
+    },
+    LOGOUT: (state) => {
+      window.localStorage.removeItem('user')
+      window.localStorage.removeItem('token')
+      state.user = null
+      state.token = null
+      window.localStorage.removeItem('permissions')
+      state.permissions = []
+      state.authed_urls = []
+    },
     SET_TOKEN: (state, token) => {
       state.token = token
     },
@@ -26,17 +49,23 @@ const user = {
 
   actions: {
     // 登录
-    Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
+    Login({ commit }, user) {
+      // const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
+        window.localStorage.setItem('user', JSON.stringify(user))
+        commit('SET_USER', user)
+        window.localStorage.setItem('token', user.apikey)
+        commit('SET_TOKEN', user.apikey)
+        resolve()
+
+        /* login(username, userInfo.password).then(response => {
           const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {
           reject(error)
-        })
+        }) */
       })
     },
 

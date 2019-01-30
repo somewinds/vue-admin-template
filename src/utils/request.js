@@ -31,8 +31,6 @@ const service = axios.create({
   }
 })
 
-// 取消/终止请求用参数
-const CancelToken = service.CancelToken
 // let cancel
 Vue.prototype._reqManage = []
 
@@ -40,8 +38,8 @@ Vue.prototype._reqManage = []
 service.interceptors.request.use(
   config => {
     // 用户已登录，添加token信息到header
-    if (store.state.token) {
-      config.headers.Authorization = 'bearer' + store.state.token
+    if (store.getters.token) {
+      config.headers.Authorization = 'bearer' + store.getters.token
       // 其他调用处理
     }
     /* if (store.getters.token) {
@@ -81,14 +79,15 @@ service.interceptors.request.use(
       // 默认所有get接口都可以终止，除非设置 configParams.canCancelToken = false
       if (!config.configParams || config.configParams.canCancelToken !== false) {
         // 能否取消/终止请求
-        config.cancelToken = new CancelToken(function executor(c) {
+        // 取消/终止请求用参数 axios.CancelToken
+        config.cancelToken = new axios.CancelToken(function executor(c) {
           // cancel = c
           try {
             Vue.prototype._reqManage
               ? Vue.prototype._reqManage.push({ url: config.url, cancel: c })
               : Vue.prototype._reqManage = new Array({ url: config.url, cancel: c })
           } catch (e) {
-            // console.log(e)
+            console.log(e)
           }
         })
       }
@@ -195,6 +194,7 @@ export function get(url, param, successCallback, errorCallback, networkErrorCall
     params: param,
     configParams: configParams
   }).then(response => {
+    // console.log(response)
     if (response.data.code === undefined) {
       if (successCallback) {
         successCallback(response.data)
@@ -220,6 +220,7 @@ export function get(url, param, successCallback, errorCallback, networkErrorCall
       }
     }
   }).catch(error => {
+    console.log(error)
     Message({
       type: 'error',
       message: url + ':网络连接失败'
