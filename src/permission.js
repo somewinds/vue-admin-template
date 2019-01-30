@@ -21,11 +21,12 @@ router.beforeEach((to, from, next) => {
       next()
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
+      const authed_urls = store.getters.authed_urls // 用户可访问路由
       if (store.getters.roles.length === 0) {
         // const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
-        const roles = ['admin', 'dynamic-table'] // note: roles must be a array! such as: ['editor','develop']
+        const roles = ['dynamic-tabxle'] // note: roles must be a array! such as: ['editor','develop']
         store.commit('SET_ROLES', roles)
-        store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
+        store.dispatch('GenerateRoutes', { roles, authed_urls }).then(() => { // 根据roles权限生成可访问的路由表
           router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
         })
       }
@@ -34,18 +35,18 @@ router.beforeEach((to, from, next) => {
       // 如果访问的路由存在于 登录时返回的可访问路由数组 中，或满足 my-、resource-profile 等路由，可以访问；
       // 否则进一步判断
       if (path === '/' || path === '/dashboard' ||
-          store.getters.authed_urls.indexOf(path) >= 0 ||
-          path.indexOf('my-') >= 0 ||
-          path.indexOf('resource-profile') >= 0 ||
-          path.indexOf('performances') >= 0 ||
-          path.indexOf('processes') >= 0 ||
-          path.indexOf('forms') >= 0) {
+        authed_urls.indexOf(path) >= 0 ||
+        path.indexOf('my-') >= 0 ||
+        path.indexOf('resource-profile') >= 0 ||
+        path.indexOf('performances') >= 0 ||
+        path.indexOf('processes') >= 0 ||
+        path.indexOf('forms') >= 0) {
         next()
         NProgress.done()
       } else {
         let authed = false // 有无权限访问页面路由
         // 遍历登录时返回的可访问路由数组，如果 能匹配到 /{id} 则返回true
-        authed = store.getters.authed_urls.some(authed_url => {
+        authed = authed_urls.some(authed_url => {
           if (authed_url && authed_url !== '' && authed_url !== '/') {
             if (authed_url.indexOf('/{id}') >= 0) {
               // 使 如 /resources/{id} 能够匹配到 /resources/1
