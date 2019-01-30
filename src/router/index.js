@@ -34,10 +34,12 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
-    hidden: true,
+    // hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
+      // name: 'dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: 'Dashboard', icon: 'table' }
     }]
   },
 
@@ -156,6 +158,66 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
+  {
+    path: '',
+    component: Layout,
+    onlyHideParent: true,
+    children: [
+      {
+        path: '/users',
+        component: () => import('@/views/form/index'),
+        name: 'Users',
+        meta: {
+          title: '注册买家',
+          icon: 'form'
+        }
+      }, {
+        path: '/users/view/:id',
+        component: () => import('@/views/form/index'),
+        hidden: true,
+        name: 'UserDetail',
+        meta: {
+          title: 'UserDetail',
+          icon: 'form'
+        }
+      }, {
+        path: '/businesses/edit/:id?',
+        component: () => import('@/views/form/index'),
+        hidden: true,
+        name: 'BusinessEditor',
+        meta: {
+          title: 'BusinessEditor',
+          icon: 'form'
+        }
+      }, {
+        path: '/appeal-infos',
+        component: () => import('@/views/form/index'),
+        name: 'AppealInfos',
+        meta: {
+          title: 'AppealInfos',
+          icon: 'form'
+        }
+      }
+    ]
+  },
+  /* {
+    path: '',
+    component: Layout,
+    meta: { title: 'PDF', icon: 'pdf' },
+    children: [
+      {
+        path: '/appeal-infos2',
+        component: () => import('@/views/form/index'),
+        name: 'PDF',
+        meta: { title: 'PDF' }
+      }, {
+        path: '/appeal-infos2/edit',
+        component: () => import('@/views/form/index'),
+        name: 'PDFedit',
+        meta: { title: 'PDFedit' }
+      }
+    ]
+  }, */
   tableRouter
 ]
 
