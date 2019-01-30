@@ -7,6 +7,13 @@ const user = {
     avatar: '',
     roles: [],
 
+    operation_tasks: {
+      user: {
+        enterprise: 0,
+        invitation: 0,
+        property_application: 21
+      }
+    }, // 左侧导航显示的任务数
     user: null, // 当前用户
     token: null, // 用户调用API的token
     permissions: [], // 用户可以进行的操作，文字形式
