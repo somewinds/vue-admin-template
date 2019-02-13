@@ -1,38 +1,38 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
 
-/**
- * 通过meta.role判断是否与当前用户权限匹配
- * @param roles
- * @param route
- */
-function hasPermission(roles, route) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role))
-  } else {
-    return true
-  }
-}
+// /**
+//  * 通过meta.role判断是否与当前用户权限匹配
+//  * @param roles
+//  * @param route
+//  */
+// function hasPermission(roles, route) {
+//   if (route.meta && route.meta.roles) {
+//     return roles.some(role => route.meta.roles.includes(role))
+//   } else {
+//     return true
+//   }
+// }
 
-/**
- * 递归过滤异步路由表，返回符合用户角色权限的路由表
- * @param routes asyncRouterMap
- * @param roles
- */
-function filterAsyncRouter(routes, roles) {
-  const res = []
+// /**
+//  * 递归过滤异步路由表，返回符合用户角色权限的路由表
+//  * @param routes asyncRouterMap
+//  * @param roles
+//  */
+// function filterAsyncRouter(routes, roles) {
+//   const res = []
 
-  routes.forEach(route => {
-    const tmp = { ...route }
-    if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRouter(tmp.children, roles)
-      }
-      res.push(tmp)
-    }
-  })
+//   routes.forEach(route => {
+//     const tmp = { ...route }
+//     if (hasPermission(roles, tmp)) {
+//       if (tmp.children) {
+//         tmp.children = filterAsyncRouter(tmp.children, roles)
+//       }
+//       res.push(tmp)
+//     }
+//   })
 
-  return res
-}
+//   return res
+// }
 
 /**
  * 通过path判断是否与当前用户可访问路由数组匹配
@@ -44,18 +44,22 @@ function hasPermissionByAuthedUrls(authed_urls, route) {
     return true
   } else {
     return authed_urls.some(authed_url => {
-      return authed_url.split('|').some(url => {
-        if (url.indexOf('/{id}') >= 0) {
-          // 使 如 /resources/{id} 能够匹配到 /resources/1
-          var re = new RegExp(url.replace('/{id}', '/(\\d)*'))
-          if (re.test(route.path)) {
+      if(authed_url && authed_url.length > 0){
+        return authed_url.split('|').some(url => {
+          if (url.indexOf('/{id}') >= 0) {
+            // 使 如 /resources/{id} 能够匹配到 /resources/1
+            var re = new RegExp(url.replace('/{id}', '/(\\d)*'))
+            if (re.test(route.path)) {
+              return true
+            }
+          } else if (url === route.path) {
             return true
           }
-        } else if (url === route.path) {
-          return true
-        }
+          return false
+        })
+      } else {
         return false
-      })
+      }
     })
   }
 }
@@ -107,6 +111,13 @@ const permission = {
       } else {
         state.authed_urls = []
       }
+    },
+    RESET_GENERATE_ROUTES(state) {
+      console.log('RESET_GENERATE_ROUTES')
+      state.routers = []
+      state.addRouters = []
+      state.permissions = []
+      state.authed_urls = []
     }
   },
   actions: {
@@ -117,13 +128,13 @@ const permission = {
         // roles          用户角色，如果动态路由中包含 meta.roles: ['admin', 'editor']，及当角色为admin、editor才能看到次路由
         // authed_urls    可访问路由，当前登录用户能够（看到并）访问的路由
         let accessedRouters
-        if (roles.includes('admin')) {
+        if (Array.isArray(roles) && roles.includes('admin')) {
           accessedRouters = asyncRouterMap
         } else {
           // accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
-          console.log(asyncRouterMap, roles, authed_urls)
-          // accessedRouters = filterAsyncRouterByAuthedUrls(asyncRouterMap, authed_urls)
-          accessedRouters = filterAsyncRouterByAuthedUrls(asyncRouterMap, ['/users', '/users/view/{id}', '/businesses/edit|/businesses/edit/{id}'])
+          // console.log(asyncRouterMap, roles, authed_urls)
+          accessedRouters = filterAsyncRouterByAuthedUrls(asyncRouterMap, authed_urls)
+          // accessedRouters = filterAsyncRouterByAuthedUrls(asyncRouterMap, ['/users', '/users/view/{id}', '/businesses/edit|/businesses/edit/{id}'])
           // accessedRouters = asyncRouterMap
         }
         commit('SET_ROUTERS', accessedRouters)

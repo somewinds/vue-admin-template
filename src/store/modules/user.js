@@ -31,7 +31,8 @@ const user = {
         store.commit('X_SEARCH_PARAMS_SELECTION/RESET_ALL_SHOW_SEARCH_PARAMS'); */
 
     },
-    LOGOUT: (state) => {
+    /* LOGOUT: (state) => {
+      console.log('logout')
       window.localStorage.removeItem('user')
       window.localStorage.removeItem('token')
       state.user = null
@@ -39,7 +40,7 @@ const user = {
       window.localStorage.removeItem('permissions')
       state.permissions = []
       state.authed_urls = []
-    },
+    }, */
     SET_TOKEN: (state, token) => {
       state.token = token
     },
@@ -98,14 +99,23 @@ const user = {
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        console.log('LogOut')
+        window.localStorage.removeItem('user')
+        window.localStorage.removeItem('token')
+        state.user = null
+        state.token = null
+        window.localStorage.removeItem('permissions')
+        state.permissions = []
+        state.authed_urls = []
+        resolve()
+        /* logout(state.token).then(() => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           removeToken()
           resolve()
         }).catch(error => {
           reject(error)
-        })
+        }) */
       })
     },
 

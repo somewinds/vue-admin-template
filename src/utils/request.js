@@ -114,8 +114,11 @@ service.interceptors.response.use(
     const res = response.data
     // 对response做判断，如果错误提示错误消息
     if (res.code === -99) {
-      store.commit('LOGOUT')
-      router.go(0)
+      store.dispatch('LogOut').then(() => {
+        location.href = '#/login' // 为了重新实例化vue-router对象 避免bug
+        router.go(0)
+      })
+      // router.go(0)
     }
     return response
   },
@@ -135,14 +138,15 @@ service.interceptors.response.use(
       switch (error.response.status) {
         // 401 token失效
         case 401:
-          store.commit('LOGOUT')
-          router.push({
-            name: 'login',
-            query: { redirect: router.currentRouter.fullPath }
-          })
-          Message({
-            message: 'token已失效，请重新登录',
-            type: 'error'
+          store.commit('LogOut').then(() => {
+            router.push({
+              name: 'login',
+              query: { redirect: router.currentRouter.fullPath }
+            })
+            Message({
+              message: 'token已失效，请重新登录',
+              type: 'error'
+            })
           })
       }
     }

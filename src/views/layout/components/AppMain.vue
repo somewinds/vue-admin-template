@@ -1,5 +1,5 @@
 <template>
-  <section class="app-main">
+  <section class="app-main linhuiba-body-content">
     <transition name="fade-transform" mode="out-in">
       <!-- or name="fade" -->
       <!-- <router-view :key="key"></router-view> -->

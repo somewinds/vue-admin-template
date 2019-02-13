@@ -106,8 +106,12 @@ export default {
             })
             this.loading = false
             getPermission({}, response => {
-              console.log(response)
-              this.$store.commit('UPDATE_ABILITIES', response)
+              let abilities = {
+                id: Array.isArray(response.id) ? [...new Set(response.id)] : [],
+                label: Array.isArray(response.label) ? [...new Set(response.label)] : [],
+                menu_uri: Array.isArray(response.menu_uri) ? [...new Set(response.menu_uri)] : []
+              }
+              this.$store.commit('UPDATE_ABILITIES', abilities)
               // console.log(response)
 
               if (this.redirect === undefined || this.redirect == null) {

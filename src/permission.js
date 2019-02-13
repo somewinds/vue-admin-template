@@ -16,6 +16,9 @@ import Vue from 'vue'
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  if (to.path === '/login') {
+    store.commit('RESET_GENERATE_ROUTES') // 重置路由，防止重新登陆后路由还是旧的路由
+  }
   if (store.getters.token) {
     if (to.path === '/login') {
       next()
@@ -26,7 +29,9 @@ router.beforeEach((to, from, next) => {
         // const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
         const roles = ['dynamic-tabxle'] // note: roles must be a array! such as: ['editor','develop']
         store.commit('SET_ROLES', roles)
-        store.dispatch('GenerateRoutes', { roles, authed_urls }).then(() => { // 根据roles权限生成可访问的路由表
+      }
+      if(!store.getters.permission_routers || store.getters.permission_routers.length === 0){
+        store.dispatch('GenerateRoutes', { authed_urls }).then(() => { // 根据roles权限生成可访问的路由表
           router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
         })
       }
@@ -105,6 +110,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
+      console.log('您还没有登录，请登录')
       Message({
         message: '您还没有登录，请登录',
         type: 'error'
