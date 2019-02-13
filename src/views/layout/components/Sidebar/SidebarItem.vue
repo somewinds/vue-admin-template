@@ -17,8 +17,7 @@
             :is-nest="true"
             :item="child"
             :key="child.path"
-            :base-path="resolvePath(child.path)"
-            class="nest-menu" />
+            :base-path="resolvePath(child.path)" />
           <app-link v-else :to="resolvePath(child.path)" :key="child.name">
             <el-menu-item :index="resolvePath(child.path)">
               <item v-if="child.meta" :path="child.path" :icon="child.meta.icon" :title="child.meta.title" />
