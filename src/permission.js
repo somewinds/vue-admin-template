@@ -45,7 +45,8 @@ router.beforeEach((to, from, next) => {
         path.indexOf('resource-profile') >= 0 ||
         path.indexOf('performances') >= 0 ||
         path.indexOf('processes') >= 0 ||
-        path.indexOf('forms') >= 0) {
+        path.indexOf('forms') >= 0 || 
+        /redirect\/.*/.test(path)) { // 或者是刷新页面重定向
         next()
         NProgress.done()
       } else {

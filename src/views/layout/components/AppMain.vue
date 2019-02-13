@@ -3,7 +3,9 @@
     <transition name="fade-transform" mode="out-in">
       <!-- or name="fade" -->
       <!-- <router-view :key="key"></router-view> -->
-      <router-view/>
+      <keep-alive :include="cachedViews">
+        <router-view :key="key"/>
+      </keep-alive>
     </transition>
   </section>
 </template>
@@ -12,6 +14,12 @@
 export default {
   name: 'AppMain',
   computed: {
+    cachedViews() {
+      return this.$store.state.tagsView.cachedViews
+    },
+    key() {
+      return this.$route.fullPath
+    }
     // key() {
     //   return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
     // }

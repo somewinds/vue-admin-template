@@ -22,10 +22,23 @@ import tableRouter from './modules/table'
 * meta : {
     title: 'title'               the name show in submenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon show in the sidebar
+    noCache: true                if true, the page will no be cached(default is false)
     breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
   }
 **/
 export const constantRouterMap = [
+  // 起到路由刷新作用
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
@@ -223,6 +236,7 @@ export const asyncRouterMap = [
             hidden: true,
             meta: {
               title: '新增文章',
+              noCache: true
               // icon: 'form'
             }
           }, {
@@ -232,6 +246,7 @@ export const asyncRouterMap = [
             hidden: true,
             meta: {
               title: '编辑文章',
+              noCache: true
               // icon: 'form'
             }
           }

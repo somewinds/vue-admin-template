@@ -2,6 +2,8 @@
 const getters = {
   sidebar: state => state.app.sidebar,
   device: state => state.app.device,
+  visitedViews: state => state.tagsView.visitedViews,
+  cachedViews: state => state.tagsView.cachedViews,
   token: state => state.user.token, // 从user映射出token
   user: state => state.user.user, // 从user映射出user
   avatar: state => state.user.avatar,
