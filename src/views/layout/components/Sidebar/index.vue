@@ -9,7 +9,14 @@
       text-color="#bfcbd9"
       active-text-color="#409EFF"
     >
-      <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
+      <template v-for="route in permission_routers">
+        <template v-if="route.onlyHideParent">
+          <sidebar-item v-for="route_child in route.children" :key="route_child.path" :item="route_child" :base-path="route_child.path"/>
+        </template>
+        <template v-else>
+          <sidebar-item :key="route.path" :item="route" :base-path="route.path"/>
+        </template>
+      </template>
     </el-menu>
   </el-scrollbar>
 </template>

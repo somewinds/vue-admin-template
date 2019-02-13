@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <div>
     <svg-icon :icon-class="icon"/>
     <span slot="title">
       {{ title }}
@@ -9,7 +9,7 @@
         :max="99"
         class="linhuiba-badge" />
     </span>
-  </span>
+  </div>
 </template>
 
 <script>
