@@ -9,6 +9,9 @@ Vue.use(Router)
 /* Layout */
 import Layout from '../views/layout/Layout'
 
+/* Empty 空白通用组件 */
+import Empty from '../views/empty'
+
 /* Router Modules */
 import tableRouter from './modules/table'
 
@@ -211,14 +214,14 @@ export const asyncRouterMap = [
           icon: 'form'
         }
       }, {
-        path: '',
+        path: '/contents',
         redirect: '/articles',
-        component: () => import('@/views/articles/Articles'),
+        component: Empty,
         name: 'Content',
         alwaysShow: true,
         meta: {
           title: '内容管理',
-          // icon: 'form'
+          icon: 'form'
         },
         children: [
           {
