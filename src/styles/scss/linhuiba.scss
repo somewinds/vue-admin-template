@@ -1,0 +1,427 @@
+.flex-box {
+  display: -ms-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.el-button.linhuiba-btn-primary {
+  color: #0077FF;
+  border-color: #0077FF;
+}
+
+// 按钮样式
+.tab-radio {
+
+  .el-radio.is-bordered {
+    background-color: #fff;
+    border-radius: 20px;
+
+    padding: 10px 10px 0 10px;
+
+    .el-radio__input {
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: 0;
+    }
+
+    .el-radio__label {
+      padding: 0 10px;
+    }
+  }
+}
+
+// 搜索部分的公共样式
+div.linhuiba-search-form {
+
+  // 单行
+  .el-row {
+    // margin-top: 10px;
+
+    // 行内item
+    .item {
+      display: inline-block;
+      margin: 0 15px 10px 0;
+      line-height: 20px;
+
+      .title {
+        min-width: 70px;
+        display: inline-block;
+        text-align: right;
+
+      }
+
+      .el-radio-group {
+
+        .el-radio {
+          min-width: 55px;
+        }
+
+        .el-radio+.el-radio {
+          margin-left: 15px;
+        }
+      }
+
+      .el-input {
+        width: 180px;
+      }
+
+      .el-select {
+        width: auto;
+
+        .el-input {
+          width: 180px;
+        }
+      }
+    }
+  }
+}
+
+// 表单搜索样式
+.el-form.linhuiba-search-form {
+
+  // 行内item
+  .el-form-item {
+    display: inline-block;
+    margin: 0 15px 10px 0;
+
+    .el-form-item__label {
+      min-width: 100px;
+      display: inline-block;
+      float: none;
+    }
+
+    .el-form-item__content {
+      display: inline-block;
+      margin-left: 0;
+    }
+
+    .el-radio-group {
+
+      .el-radio {
+        min-width: 55px;
+      }
+
+      .el-radio+.el-radio {
+        margin-left: 15px;
+      }
+    }
+
+    .el-input {
+      width: 180px;
+    }
+
+    .el-cascader {
+      width: 200px;
+
+      .el-input {
+        width: 100%;
+      }
+    }
+
+    .el-select {
+      width: auto;
+
+      .el-input {
+        width: 180px;
+      }
+    }
+  }
+}
+
+// 编辑表单公共样式
+.linhuiba-editor-form {
+  .el-form {
+
+    // flex布局
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // 单个模块
+    .form-block {
+      margin-bottom: 20px;
+
+      .form-block-title {
+        height: 18px;
+        margin-bottom: 20px;
+        line-height: 18px;
+        font-size: 18px;
+      }
+    }
+
+
+
+    .linhuiba-font-title {
+      font-size: 18px;
+      color: #303133;
+      letter-spacing: 0;
+      line-height: 18px;
+
+      font-weight: bold;
+    }
+
+    // 表单input、select、cascader默认样式
+    .el-form-item {
+
+      .el-input {
+        width: 200px;
+        vertical-align: middle;
+      }
+
+      .el-textarea {
+        min-width: 200px;
+        vertical-align: middle;
+      }
+
+      .el-select {
+        width: 220px;
+
+        .el-input {
+          width: inherit;
+        }
+      }
+
+      .el-cascader {
+
+        .el-input {
+          width: inherit;
+        }
+      }
+
+      .el-input.has-prepend {
+        width: auto;
+        vertical-align: middle;
+
+        .el-input__inner {
+          width: 100px;
+        }
+      }
+
+      .el-radio-group {
+        vertical-align: initial;
+
+        .el-radio {
+          min-width: 55px;
+          margin: 0 20px 0 0;
+          padding: 10px 0;
+        }
+      }
+
+      .el-checkbox {
+        margin: 0 30px 10px 0;
+        // line-height: 30px;
+      }
+
+      .el-checkbox-group {
+
+        .el-checkbox.label-checkbox {
+          margin: 0 30px 10px 0;
+          padding: 5px 15px 5px 15px;
+
+          .el-checkbox__input {
+            display: none;
+          }
+
+          .el-checkbox__label {
+            padding: 0;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+// 详情部分的公共样式
+.linhuiba-detail {
+  padding: 40px;
+
+  .page-title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .info-box {
+
+    .linhuiba-font-title {
+      height: 18px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #303133;
+      letter-spacing: 0;
+      line-height: 18px;
+
+      font-weight: bold;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .info-content {
+      padding: 20px;
+      background-color: #F5F7FA;
+
+      .el-col {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 15px;
+      }
+
+
+      .title {
+        width: 120px;
+        display: inline-block;
+        color: #909399;
+        letter-spacing: 0;
+      }
+
+      .content {
+        display: inline-block;
+        color: #303133;
+        white-space: normal;
+        word-break: break-all;
+
+        >.item {
+          display: inline-block;
+          margin-right: 20px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    &.statistic-box {
+
+      .statistic-content {
+        display: inline-block;
+        margin-right: 20px;
+        padding: 15px 40px;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        background-color: #1989FA;
+
+        .number {
+          font-size: 24px;
+        }
+
+        .title {
+            
+        }
+
+        &.transaction {
+          background-color: #F56C6C;
+        }
+      }
+
+      .goto-more-orders {
+        width: 200px;
+        height: 100%;
+        font-size: 16px;
+      }
+
+    }
+
+  }
+
+  .linhuiba-divider {
+    margin: 40px 0;
+  }
+
+  .flex {
+    display: flex;
+
+    .title {
+      flex-shrink: 0;
+      min-width: 100px;
+      margin-right: 5px;
+    }
+
+    .content {
+      display: inline-block;
+      vertical-align: top;
+      white-space: normal;
+      word-break: break-all;
+      // line-height: 18px;
+
+      .el-button.el-button--text {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+// table 展开公共样式
+.el-table {
+
+  .expend-detail {
+    &.flex {
+      display: flex;
+      flex-wrap: wrap;
+
+      .block {
+        flex-shrink: 0;
+      }
+    }
+
+    .flex {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+    .block {
+      width: auto;
+      padding: 20px 30px;
+
+      .item {
+        margin-bottom: 20px;
+
+        .title {
+          min-width: 100px;
+          text-align: right;
+          margin-right: 5px;
+          color: #999999;
+        }
+
+        .content {
+          display: inline-block;
+          vertical-align: top;
+          white-space: normal;
+          word-break: break-all;
+
+          .el-button.el-button--text {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+
+
+// table下的批量操作表单
+.linhuiba-batch-form {
+  background-color: #FFFFFF;
+  padding: 5px 15px;
+
+  &>.el-button {
+    margin: 0 10px 0 0;
+  }
+
+  &>.el-checkbox {
+    margin: 0 20px 0 0;
+  }
+}

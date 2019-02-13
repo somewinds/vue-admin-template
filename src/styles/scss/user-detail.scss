@@ -1,0 +1,56 @@
+// 用户详情的“卡片”样式
+@mixin user-detail-card {
+
+  .linhuiba-card-header {
+    padding: 20px;
+    background: #F5F7FA;
+    border-bottom: 1px solid #DCDFE6;
+
+    .linhuiba-font-title {
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
+      color: #303133;
+      letter-spacing: 0;
+      font-weight: bold;
+    }
+  }
+
+  .linhuiba-card-content {
+    padding: 20px;
+
+    .el-col {
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 20px;
+    }
+
+    .item {
+
+      .title {
+        width: auto;
+        color: #909399;
+        letter-spacing: 0;
+        vertical-align: top;
+      }
+
+      .content {
+        color: #303133;
+        word-wrap: break-word;
+        vertical-align: top;
+      }
+    }
+
+    .flex {
+      display: flex;
+
+      >* {
+        flex: inherit;
+      }
+
+      .title {
+        flex-shrink: 0;
+      }
+    }
+  }
+}

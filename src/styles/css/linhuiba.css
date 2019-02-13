@@ -1,0 +1,774 @@
+body {
+    background-color: #F2F2F2;
+    font-family: "微软雅黑",'Avenir', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: #20A0FF;
+}
+
+.badge {
+    font-weight: normal;
+}
+
+.dn {
+    display: none;
+}
+
+.db {
+    display: block;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.linhuiba-flex-box {
+    display: flex;
+}
+
+.linhuiba-inline-block {
+    display: inline-block;
+}
+
+/*字体*/
+.linhuiba-font-small {
+    font-size: 12px;
+}
+
+.linhuiba-font-normal {
+    font-size: 14px;
+}
+
+.linhuiba-font-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.linhuiba-font-huge {
+    font-size: 24px;
+}
+
+i.linhuiba-font-icon-mini {
+    font-size: 12px;
+}
+
+i.linhuiba-font-icon-small {
+    font-size: 16px;
+}
+
+i.linhuiba-font-icon-18 {
+    font-size: 18px;
+}
+
+i.linhuiba-font-icon-medium {
+    font-size: 20px;
+}
+
+i.linhuiba-font-icon-big {
+    font-size: 24px;
+}
+
+i.linhuiba-font-icon-huge {
+    font-size: 28px;
+}
+
+.linhuiba-font-light-gray {
+    color: #E5E9F2;
+}
+
+.linhuiba-font-price {
+    font-size: 16px;
+    color: #d50000;
+}
+
+.linhuiba-font-success {
+    color: #67C23A;
+}
+
+.linhuiba-font-info {
+    color: #50bFFF;
+}
+
+.linhuiba-font-warning {
+    color: #F7BA2A;
+}
+
+.linhuiba-font-danger {
+    color: #F56C6C;
+}
+
+.linhuiba-font-help {
+    color: #999999;
+}
+
+.linhuiba-font-bold {
+    font-weight: bold;
+}
+
+.linhuiba-font-primary {
+    color: #20A0FF;
+}
+
+/*对齐*/
+.linhuiba-align-center {
+    text-align: center;
+}
+
+.linhuiba-align-left {
+    text-align: left;
+}
+
+.linhuiba-align-right {
+    text-align: right;
+}
+
+/*分割线*/
+.linhuiba-line {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 10px 0;
+}
+
+.linhuiba-divider {
+    margin: 10px 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.linhuiba-divider.dashed {
+    border-bottom: 1px dashed #CCCCCC;
+}
+
+.linhuiba-top {
+    position: fixed;
+    width: 100%;
+    height: 65px;
+    left: 0;
+    top: 0;
+    background-color: #E4E4E4;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.linhuiba-sidebar {
+    position: absolute;
+    width: 170px;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    background-color: #324157;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #FFFFFF;
+}
+
+.linhuiba-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.linhuiba-sidebar.collapsed {
+    width: 64px;
+}
+
+.linhuiba-body {
+    position: absolute;
+    left: 170px;
+    right: 0;
+    top: 65px;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: auto;
+    /*background-color: #fff;*/
+    margin: 15px;
+    /*padding: 15px;*/
+    padding-bottom: 60px;
+    min-width: 800px;
+}
+.linhuiba-body-content {
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+.linhuiba-body.expanded {
+    left: 64px;
+}
+
+.linhuiba-body.has-tags{
+  margin-top: 52px;
+}
+
+.linhuiba-menu-control-bar {
+    padding: 5px 0;
+    background-color: #607d8b;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.linhuiba-side-menu {
+    background-color: transparent;
+}
+
+.linhuiba-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+    background-color: #FF0000;
+    display: inline-block;
+    margin-left:8px;
+}
+
+.linhuiba-dot.success {
+    background-color: #2e7d32;
+}
+
+.linhuiba-dot.warning {
+    background-color: #ef6c00;
+}
+
+.linhuiba-dot.invalid {
+    background-color: #999999;
+}
+
+.linhuiba-dot.primary {
+    background-color: #2196f3;
+}
+
+.linhuiba-task-title {
+    display: inline-flex;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    background: #1976d2;
+    color: #FFFFFF;
+    min-height: 100px;
+}
+
+.linhuiba-task-title.success {
+    background-color: #2e7d32;
+}
+
+.linhuiba-task-title.warning {
+    background-color: #ef6c00;
+}
+
+.linhuiba-task-title.danger {
+    background-color: #d50000;
+}
+
+.linhuiba-card-header {
+    background-color: #E0E0E0;
+    display: block;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+.linhuiba-card-content {
+    padding: 10px 15px;
+    font-size: 12px;
+}
+
+.linhuiba-card-header a {
+    color: #333333;
+    text-decoration: none;
+    font-size: 12px;
+    color: #666666;
+    font-weight: normal;
+}
+
+.linhuiba-task-content {
+    display: inline-flex;
+    padding: 5px 10px;
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.linhuiba-task-content a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.linhuiba-menu-item {
+    display: block;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.linhuiba-menu-item:hover {
+    color: #81d4fa;
+}
+
+.linhuiba-menu-item.selected {
+    color: #1976d2;
+}
+
+.linhuiba-box {
+    border: 1px solid #CCCCCC;
+}
+
+.linhuiba-form {
+    min-width: 750px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.linhuiba-form .el-form-item {
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.linhuiba-form label {
+    font-size: 12px;
+}
+
+.linhuiba-form .el-select {
+    width: 100%;
+}
+
+.linhuiba-info-form label{
+    color: #999999;
+    width: 90px;
+    display: inline-block;
+}
+
+.linhuiba-info-form .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.linhuiba-info-form .el-form-item__label {
+    line-height: 24px;
+}
+
+.linhuiba-info-form .el-form-item__content {
+    line-height: 24px;
+}
+
+.el-table .linhuiba-info-row {
+    background: #c9e5f5;
+}
+
+.el-table .linhuiba-success-row {
+    background: #e2f0e4;
+}
+
+.el-table .linhuiba-warning-row {
+    background: #ffe0b2;
+}
+
+.el-table .linhuiba-danger-row {
+    background: #ffcdd2;
+}
+
+.el-table .linhuiba-invalid-row {
+    background: #eeeeee;
+}
+
+.el-table .linhuiba-default-row {
+    background: #F0F2F4;
+}
+
+.el-table .el-dropdown-link {
+    cursor: pointer;
+    color: #20a0ff;
+    padding-left: 0;
+}
+
+.linhuiba-dropdown-link, .el-dropdown-link.linhuiba-dropdown-link {
+    cursor: pointer;
+    color: #20a0ff;
+    padding-left: 0;
+}
+
+.linhuiba-info-container label {
+    width: 80px;
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+}
+
+.linhuiba-info-container .el-row {
+    margin: 0;
+}
+
+.linhuiba-info-container div {
+    margin-top: 10px;
+}
+
+.linhuiba-search-form {
+    margin: 10px 0;
+}
+
+.linhuiba-search-form .el-select {
+    width: 120px;
+}
+
+.linhuiba-search-form .el-select .el-input {
+    width: auto;
+}
+
+.linhuiba-search-form .el-input {
+    width: 180px;
+}
+
+.linhuiba-search-form .el-cascader .el-input {
+    width: inherit;
+}
+
+.linhuiba-table {
+    background: #FFFFFF;
+    border: 1px solid #bbdefb;
+    width: 100%;
+}
+
+.linhuiba-table thead>tr>th {
+    background: #bbdefb;
+}
+
+.linhuiba-table tbody {
+    background-color: #FFFFFF;
+}
+
+.linhuiba-bordered-container {
+    border: 1px solid #DCDCDC;
+}
+
+.linhuiba-light-sidebar {
+    background-color: #DCDCDC;
+    padding: 15px;
+    min-height: 600px;
+}
+
+.linhuiba-content {
+    background-color: #FFFFFF;
+    padding: 15px;
+    min-height: 600px;
+    min-width: 600px;
+}
+
+.linhuiba-editor-actionbar {
+    background-color: #F9FAFC;
+    border: 1px solid #C0CCDA;
+    border-bottom: none;
+    padding: 3px 10px;
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.linhuiba-editor-button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+.linhuiba-editor-button:hover {
+    color: #58B7FF;
+}
+
+.linhuiba-editor-button i.active {
+    color: #20A0FF;
+}
+
+.linhuiba-editor-content {
+    background-color: #FFFFFF;
+    height: 550px;
+    outline: none;
+    padding: 15px;
+    overflow-y: auto;
+    border: 1px solid #C0CCDA;
+}
+
+.linhuiba-editor-content:focus {
+    border: 1px solid #20A0FF;
+}
+
+.linhuiba-editor-select {
+    outline: none;
+    height: 30px;
+}
+
+.linhuiba-btn-select.active {
+    background-color: #C0CCDA!important;
+}
+
+.linhuiba-btn-select:hover,
+.linhuiba-btn-select:focus {
+    border-color: #C0CCDA!important;
+    color: #000000!important;
+}
+
+/* 边距 */
+.linhuiba-margin-top-10 {
+    margin-top: 10px;
+}
+
+.linhuiba-margin-top-15 {
+    margin-top: 15px;
+}
+
+.linhuiba-margin-top-20 {
+    margin-top: 20px;
+}
+
+.linhuiba-margin-top-30 {
+    margin-top: 30px;
+}
+
+.linhuiba-margin-right-10 {
+    margin-right: 10px;
+}
+
+.linhuiba-margin-right-15 {
+    margin-right: 15px;
+}
+
+.linhuiba-margin-right-20 {
+    margin-right: 20px;
+}
+
+.linhuiba-margin-right-30 {
+    margin-right: 30px;
+}
+
+.linhuiba-margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.linhuiba-margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.linhuiba-margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.linhuiba-margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.linhuiba-margin-left-10 {
+    margin-left: 10px;
+}
+
+.linhuiba-margin-left-15 {
+    margin-left: 15px;
+}
+
+.linhuiba-margin-left-20 {
+    margin-left: 20px;
+}
+
+.linhuiba-margin-left-30 {
+    margin-left: 30px;
+}
+
+.linhuiba-margin-normal {
+    margin-top: 15px;
+}
+
+.linhuiba-margin-wide {
+    margin-top: 30px;
+}
+
+.linhuiba-no-padding {
+    padding: 0;
+}
+
+/*树形控件滚动条*/
+.el-tree {
+    height: 500px;
+    overflow: auto;
+}
+
+/* dialog宽 */
+.linhuiba-dialog-400.el-dialog {
+    width: 400px;
+}
+
+.linhuiba-dialog-450.el-dialog {
+    width: 450px;
+}
+
+.linhuiba-dialog-550.el-dialog {
+    width: 550px;
+}
+
+.linhuiba-dialog-650.el-dialog {
+    width: 650px;
+}
+
+.linhuiba-dialog-750.el-dialog {
+    width: 750px;
+}
+
+.linhuiba-dialog-850.el-dialog {
+    width: 850px;
+}
+
+.linhuiba-dialog-950.el-dialog {
+    width: 950px;
+}
+
+.linhuiba-dialog-1050.el-dialog {
+    width: 1050px;
+}
+
+.linhuiba-dialog-1150.el-dialog {
+    width: 1150px;
+}
+
+.linhuiba-dialog-1250.el-dialog {
+    width: 1250px;
+}
+
+.el-dialog .el-dialog__body {
+    padding: 15px 20px;
+}
+
+.linhuiba-title {
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+}
+
+.linhuiba-signup-tag {
+    background-color: #d50000;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 10px;
+    padding: 0px 0px;
+    display: inline-block;
+    border-radius: 3px;
+    position: relative;
+    height: 20px;
+    min-width: 120px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.linhuiba-signup-tag:before{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 20px;
+    top: 20px;
+    border: 8px solid;
+    border-color: #FFFFFF transparent transparent #FFFFFF;
+}
+
+.linhuiba-signup-tag:after{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 21px;
+    top: 20px;
+    border: 6px solid;
+    border-color: #d50000 transparent transparent #d50000;
+}
+
+.linhuiba-table {
+    width: 100%;
+    border: 1px solid #bdbdbd;
+    border-spacing: 0;
+}
+
+.linhuiba-table>thead>tr>th {
+    padding: 10px 0;
+}
+
+.linhuiba-statistic-block {
+    width: 200px;
+    height: 80px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.linhuiba-statistic-block.primary {
+    background-color: #20A0FF;
+    color: #FFFFFF;
+}
+
+.linhuiba-statistic-block.success {
+    background-color: #2e7d32;
+    color: #FFFFFF;
+}
+
+.linhuiba-statistic-block.warning {
+    background-color: #ef6c00;
+    color: #FFFFFF;
+}
+
+.linhuiba-statistic-block.danger {
+    background-color: #d50000;
+    color: #FFFFFF;
+}
+
+/*数字角标*/
+.el-badge.linhuiba-badge{
+    width: 0;
+    height: 0;
+    display: inline-block;
+    top: 0;
+    right: 3px;
+    position: relative;
+    vertical-align: initial;
+}
+.el-badge.linhuiba-badge sup{
+    vertical-align: super;
+    border: none;
+    background: #F50000;
+}
+
+/*常用字体颜色*/
+.text-danger{
+    color: #ffcdd2;
+}
+.text-warning{
+    color: #ffe0b2;
+}
+.text-success{
+    color: #e2f0e4;
+}
+.text-info{
+    color: #c9e5f5;
+}
+.text-invalid{
+    color: #eeeeee;
+}
+.text-white{
+    color: #fff;
+}
+
+/*froala_style默认样式，防止继承父级样式（如element）*/
+.fr-view *{
+    margin: 0;
+    padding: 0;
+    line-height: initial;
+}
