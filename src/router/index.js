@@ -197,6 +197,32 @@ export const asyncRouterMap = [
           title: 'AppealInfos',
           icon: 'form'
         }
+      }, {
+        path: '/articles',
+        component: () => import('@/views/articles/Articles'),
+        name: 'Articles',
+        meta: {
+          title: '文章管理',
+          // icon: 'form'
+        }
+      }, {
+        path: '/articles/edit',
+        component: () => import('@/views/articles/ArticleEditor'),
+        name: 'ArticleCreator',
+        hidden: true,
+        meta: {
+          title: '新增文章',
+          // icon: 'form'
+        }
+      }, {
+        path: '/articles/edit/:id',
+        component: () => import('@/views/articles/ArticleEditor'),
+        name: 'ArticleEditor',
+        hidden: true,
+        meta: {
+          title: '编辑文章',
+          // icon: 'form'
+        }
       }
     ]
   },
